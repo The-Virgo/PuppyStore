@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PuppyStoreFinal.Models.Puppy>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sold)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Puppy p in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => p.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => p.Breed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => p.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => p.Age)
+            </td>
+                @if(p.Sex == false)
+                {
+                   <td>Male</td>
+                }
+                else
+                {
+                    <td>Female</td>
+                }
+            <td>
+                @Html.DisplayFor(modelItem => p.Sold)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.PuppyId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@p.PuppyId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@p.PuppyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
