@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PuppyStoreFinal.Data;
 using PuppyStoreFinal.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,16 +13,20 @@ namespace PuppyStoreFinal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Puppies = await ApplicationDb.GetPuppiesAsync(_context);
+            mymodel.Events = await ApplicationDb.GetEventsAsync(_context);
+
+            return View(mymodel);
         }
 
         public IActionResult Privacy()

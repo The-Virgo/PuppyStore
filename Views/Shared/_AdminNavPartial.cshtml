@@ -3,12 +3,15 @@
 @inject UserManager<IdentityUser> UserManager
 
 
-    @if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Puppy" asp-action="Index">Admin Controls</a>
-        </li>
-    }
-    else
-    {
-    }
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Puppy" asp-action="Index">Puppy DB</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Index">Event DB</a>
+    </li>
+}
+else
+{
+}
