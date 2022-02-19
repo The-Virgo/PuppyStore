@@ -32,5 +32,27 @@ namespace PuppyStoreFinal.Data
 
             return p;
         }
+
+        public static async Task<Event> AddEventAsync(ApplicationDbContext _context, Event e)
+        {
+            _context.Events.Add(e);
+            await _context.SaveChangesAsync();
+            return e;
+        }
+
+        public static async Task<Event> GetEventAsync(ApplicationDbContext _context, int eventId)
+        {
+            Event e = await (from events in _context.Events
+                             where events.EventId == eventId
+                             select events).SingleAsync();
+
+            return e;
+        }
+        public static async Task<List<Event>> GetEventsAsync(ApplicationDbContext _context)
+        {
+            return await (from e in _context.Events
+                          orderby e.EventId ascending
+                          select e).ToListAsync();
+        }
     }
 }
