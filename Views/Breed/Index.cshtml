@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DogBreedApi.Root>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreedGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BredFor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temperament)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LifeSpan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DogBreedApi.Root r in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => r.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.BreedGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.BredFor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.Temperament)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.Origin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.LifeSpan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.Height.Imperial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => r.Weight.Imperial)
+            </td>
+            @{/*
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@p.PuppyId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@p.PuppyId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@p.PuppyId">Delete</a>
+            </td>
+            */}
+        </tr>
+        }
+    </tbody>
+</table>

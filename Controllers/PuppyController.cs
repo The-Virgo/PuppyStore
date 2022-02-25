@@ -18,6 +18,7 @@ namespace PuppyStoreFinal.Controllers
     {
 
         private readonly ApplicationDbContext _context;
+       
 
         public PuppyController(ApplicationDbContext context)
         {
@@ -120,5 +121,6 @@ namespace PuppyStoreFinal.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }
