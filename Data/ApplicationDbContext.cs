@@ -11,6 +11,7 @@ namespace PuppyStoreFinal.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options){}
+
         public DbSet<Puppy> Puppies { get; set; }
         public DbSet<Event> Events { get; set; }
     }
