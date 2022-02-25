@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.Configuration;
 using System.Text;
 
 namespace PuppyStoreFinal.Data.Migrations
 {
     public partial class AddAdminAcc : Migration
     {
+        private readonly IConfiguration _config;
+
+        public AddAdminAcc(IConfiguration config)
+        {
+            _config = config;
+        }
+
         const string ADMIN_USER_GUID = "42d6d963-8a88-43da-b0c2-6a335d1815c3";
         const string ADMIN_ROLE_GUID = "5ffac0a5-84c4-4356-9a04-57dba4571495";
 
@@ -13,7 +21,7 @@ namespace PuppyStoreFinal.Data.Migrations
         {
             var hasher = new PasswordHasher<IdentityUser>();
 
-            var passwordHash = hasher.HashPassword(null, "AdminPass123!");
+            var passwordHash = hasher.HashPassword(null, _config.GetSection("admin-pass").Value);
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("INSERT INTO AspNetUsers(Id, UserName, NormalizedUserName,Email,EmailConfirmed,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount,NormalizedEmail,PasswordHash,SecurityStamp)");
