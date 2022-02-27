@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DogBreedApi.Root>
+
+@foreach (DogBreedApi.Root r in Model)
+{
+    if (r.Id.ToString() == (string)ViewData["BreedId"])
+    {
+        <h1>@r.Name</h1>
+
+        <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
+
+        <h2>Breed Group</h2>
+        <p>@r.BreedGroup</p>
+
+        <h2>Origin</h2>
+        <p>@r.Origin</p>
+
+        <h2>Bred For</h2>
+        <p>@r.BredFor</p>
+
+        <h2>Temperament</h2>
+        <p>@r.Temperament</p>
+
+        <h2>Life Span</h2>
+        <p>@r.LifeSpan</p>
+
+        <h2>Weight</h2>
+        <p>@r.Weight.Imperial Pounds</p>
+
+        <h2>Height</h2>
+        <p>@r.Height.Imperial</p>
+    }
+}
+

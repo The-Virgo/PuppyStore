@@ -71,7 +71,10 @@
                 {
                     <div class="my-card">
                         <div class="image-container">
-                            <img class="card-img-top" src="/lib/puppyPlaceHolder.PNG" alt="Card image cap" />
+                            <a asp-controller="Puppy" asp-action="Details" asp-route-id="@p.PuppyId">
+                                <img class="card-img-top" src="/lib/puppyPlaceHolder.PNG" alt="Card image cap" />
+                            </a>
+                            
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">"@p.Nickname"</h5>

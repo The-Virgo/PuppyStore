@@ -22,5 +22,13 @@ namespace PuppyStoreFinal.Controllers
             List<Root> breeds = await DogBreed.GetBreedsAsync(_config.GetSection("x-api-key").Value);
             return View(breeds);
         }
+
+        public async Task<ActionResult> Details(string id)
+        {
+            List<Root> breeds = await DogBreed.GetBreedsAsync(_config.GetSection("x-api-key").Value);
+            ViewData["BreedId"] = id;
+            return View(breeds);
+        }
+
     }
 }
