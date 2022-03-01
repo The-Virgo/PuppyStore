@@ -2,22 +2,27 @@
 
 <head>
     <link rel="stylesheet" href="~/css/cards.css" />
+    <link rel="stylesheet" href="~/css/theme.css" />
 </head>
-
-<div class="card-section">
-    <div class="card-container">
-        @foreach (DogBreedApi.Root r in Model)
-        {
-            <div class="my-card">
-                <div class="image-container">
-                    <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
+<body>
+    <div class="card-section">
+        <div class="card-container">
+            @foreach (DogBreedApi.Root r in Model)
+            {
+                <div class="my-card">
+                    <div class="image-container">
+                        <a asp-controller="Breed" asp-action="Details" asp-route-id="@r.Id">
+                            <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @r.Name
+                        </h5>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        @r.Name
-                    </h5>
-                </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+</body>
+

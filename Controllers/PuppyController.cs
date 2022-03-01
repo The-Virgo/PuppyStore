@@ -34,9 +34,10 @@ namespace PuppyStoreFinal.Controllers
         }
 
         // GET: PuppyController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
+            return View(p);
         }
 
         // GET: PuppyController/Create

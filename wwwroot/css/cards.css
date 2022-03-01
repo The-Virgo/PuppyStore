@@ -14,7 +14,7 @@
 .card-container {
     grid-column: 2 / span 12;
     display: grid;
-    grid-template-columns: repeat(12, minmax(auto, 60px));
+    grid-template-columns: repeat(12, 1fr);
     grid-gap: 40px;
 }
 
@@ -36,7 +36,7 @@
 
 .image-container {
     width: 100%;
-    padding-top: 56.25%;
+    padding-top: 60.25%;
     overflow: hidden;
     position: relative;
 }
