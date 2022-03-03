@@ -14,10 +14,12 @@ namespace PuppyStoreFinal.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailProvider _emailProvider;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, IEmailProvider emailProvider)
         {
             _context = context;
+            _emailProvider = emailProvider;
         }
 
         public async Task<IActionResult> Index()
@@ -39,5 +41,24 @@ namespace PuppyStoreFinal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(EmailProviderSendgrid e)
+        {
+            if (ModelState.IsValid)
+            {
+                await _emailProvider.SendEmailAsync(null, e);
+                return RedirectToAction("Index");  
+            }
+
+            return View();
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace PuppyStoreFinal.Data
 
         public DbSet<Puppy> Puppies { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<PuppyStoreFinal.Models.EmailProviderSendgrid> EmailProviderSendgrid { get; set; }
     }
 }

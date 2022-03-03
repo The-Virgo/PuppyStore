@@ -113,7 +113,7 @@ namespace PuppyStoreFinal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
 
