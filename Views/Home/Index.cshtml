@@ -72,7 +72,7 @@
                     <div class="my-card">
                         <div class="image-container">
                             <a asp-controller="Puppy" asp-action="Details" asp-route-id="@p.PuppyId">
-                                <img class="card-img-top" src="/lib/puppyPlaceHolder.PNG" alt="Card image cap" />
+                                <img class="card-img-top" src=@("/puppy-pictures/" + p.PuppyId.ToString() + ".jpg") alt="Card image cap" />
                             </a>
                             
                         </div>
