@@ -1,0 +1,56 @@
+﻿@model PuppyStoreFinal.Models.Puppy
+
+<div class="modal fade" id="puppyCreate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Puppy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nickname" class="control-label"></label>
+                        <input asp-for="Nickname" class="form-control" />
+                        <span asp-validation-for="Nickname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Breed" class="control-label"></label>
+                        <input asp-for="Breed" class="form-control" />
+                        <span asp-validation-for="Breed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Birthday" class="control-label"></label>
+                        <input asp-for="Birthday" class="form-control" />
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age" class="control-label"></label>
+                        <input asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sex)
+                        <label class="form-check-label">
+                            <select asp-for="Sex">
+                                <option value="false">Male</option>
+                                <option value="true">Female</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Sold" /> @Html.DisplayNameFor(model => model.Sold)
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-save="modal" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
