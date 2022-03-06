@@ -32,7 +32,7 @@
                 if (index2 == 0)
                 {
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/lib/PlainBackGround.png" height="250">
+                        <img class="d-block w-100" src=@("/event-pictures/event" + e.EventId.ToString() + ".jpg") height="250">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>@e.Title</h5>
                             <p>@e.Description</p>
@@ -43,7 +43,7 @@
                 else
                 {
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/lib/PlainBackGround.png" height="250">
+                        <img class="d-block w-100" src=@("/event-pictures/event" + e.EventId.ToString() + ".jpg") height="250">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>@e.Title</h5>
                             <p>@e.Description</p>
@@ -72,7 +72,7 @@
                     <div class="my-card">
                         <div class="image-container">
                             <a asp-controller="Puppy" asp-action="Details" asp-route-id="@p.PuppyId">
-                                <img class="card-img-top" src="/lib/puppyPlaceHolder.PNG" alt="Card image cap" />
+                                <img class="card-img-top" src=@("/puppy-pictures/" + p.PuppyId.ToString() + ".jpg") alt="Card image cap" />
                             </a>
                             
                         </div>
