@@ -16,9 +16,16 @@ $(function () {
     PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
-        var sendData = form.serialize();
-        $.post(actionUrl, sendData).done(function (data) {
-            PlaceHolderElement.find('.modal').modal('hide');
-        })
+        var sendData = new FormData(form[0]);
+        $.ajax({
+            url: actionUrl,
+            type: 'POST',
+            data: sendData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                PlaceHolderElement.find('.modal').modal('hide');
+            }
+        });
     })
 })
