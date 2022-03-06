@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Data\NewFolder\" />
+    <Folder Include="wwwroot\event-pictures\" />
     <Folder Include="wwwroot\puppy-pictures\" />
   </ItemGroup>
 

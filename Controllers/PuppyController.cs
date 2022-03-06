@@ -67,19 +67,6 @@ namespace PuppyStoreFinal.Controllers
             if (ModelState.IsValid)
             {
                 await ApplicationDb.AddPuppyAsync(_context, p);
-
-                /*
-                string extension = Path.GetExtension(puppyFile.FileName);
-                string newFileName = p.PuppyId.ToString() + extension;
-
-                var uploadPath = Path.Combine(_webhost.WebRootPath, "puppy-pictures", newFileName);
-
-                using(var upload = new FileStream(uploadPath, FileMode.Create))
-                {
-                    await puppyFile.CopyToAsync(upload);
-                }
-                */
-
                 await UploadPic(puppyFile, p.PuppyId.ToString());
 
                 return RedirectToAction("Index");
@@ -116,15 +103,18 @@ namespace PuppyStoreFinal.Controllers
             {
                 _context.Entry(p).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-
-                if (System.IO.File.Exists(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName)))
+                if(puppyFile != null)
                 {
-                    System.IO.File.Delete(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName));
+                    if (System.IO.File.Exists(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName)))
+                    {
+                        System.IO.File.Delete(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName));
+                    }
+
+                    await UploadPic(puppyFile, p.PuppyId.ToString());
                 }
 
-                await UploadPic(puppyFile, p.PuppyId.ToString());
 
-                    return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(p);
         }
