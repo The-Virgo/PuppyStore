@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +6,6 @@ using PuppyStoreFinal.Data;
 using PuppyStoreFinal.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,13 +18,11 @@ namespace PuppyStoreFinal.Controllers
     {
 
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webhost;
        
 
-        public PuppyController(ApplicationDbContext context, IWebHostEnvironment webhost)
+        public PuppyController(ApplicationDbContext context)
         {
             _context = context;
-            _webhost = webhost;
         }
 
         // GET: PuppyController
@@ -47,13 +43,14 @@ namespace PuppyStoreFinal.Controllers
         // GET: PuppyController/Create
         public ActionResult Create()
         {
-            return View();
+            Puppy p = new Puppy();
+            return PartialView("_PuppyCreatePartial", p);
         }
 
         // POST: PuppyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Puppy p, IFormCollection collection, IFormFile puppyFile)
+        public async Task<IActionResult> Create(Puppy p, IFormCollection collection)
         {
             ViewData["Sex"] = collection["Sex"];
             if (ViewData["Sex"].ToString() == "false")
@@ -67,8 +64,6 @@ namespace PuppyStoreFinal.Controllers
             if (ModelState.IsValid)
             {
                 await ApplicationDb.AddPuppyAsync(_context, p);
-                await UploadPic(puppyFile, p.PuppyId.ToString());
-
                 return RedirectToAction("Index");
             }
 
@@ -86,10 +81,8 @@ namespace PuppyStoreFinal.Controllers
         // POST: PuppyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Puppy p, IFormCollection collection, IFormFile puppyFile)
+        public async Task<IActionResult> Edit(Puppy p, IFormCollection collection)
         {
-            string fileName = p.PuppyId.ToString() + ".jpg";
-
             ViewData["Sex"] = collection["Sex"];
             if (ViewData["Sex"].ToString() == "false")
             {
@@ -103,16 +96,6 @@ namespace PuppyStoreFinal.Controllers
             {
                 _context.Entry(p).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                if(puppyFile != null)
-                {
-                    if (System.IO.File.Exists(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName)))
-                    {
-                        System.IO.File.Delete(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName));
-                    }
-
-                    await UploadPic(puppyFile, p.PuppyId.ToString());
-                }
-
 
                 return RedirectToAction("Index");
             }
@@ -135,32 +118,10 @@ namespace PuppyStoreFinal.Controllers
         {
             Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
 
-            string fileName = p.PuppyId.ToString() + ".jpg";
-
             _context.Entry(p).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
 
-            if (System.IO.File.Exists(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName)))
-            {
-                System.IO.File.Delete(Path.Combine(_webhost.WebRootPath, "puppy-pictures", fileName));
-            }            
-
-
             return RedirectToAction("Index");
-        }
-
-
-        public async Task UploadPic(IFormFile file, string newName)
-        {
-            string extension = Path.GetExtension(file.FileName);
-            string newFileName = newName + extension;
-
-            var uploadPath = Path.Combine(_webhost.WebRootPath, "puppy-pictures", newFileName);
-
-            using (var upload = new FileStream(uploadPath, FileMode.Create))
-            {
-                await file.CopyToAsync(upload);
-            }
         }
 
     }
