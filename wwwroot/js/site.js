@@ -24,7 +24,9 @@ $(function () {
             processData: false,
             contentType: false,
             success: function (data) {
-                PlaceHolderElement.find('.modal').modal('hide');
+                $('.modal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
             }
         });
     })

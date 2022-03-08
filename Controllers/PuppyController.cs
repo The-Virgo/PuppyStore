@@ -81,7 +81,7 @@ namespace PuppyStoreFinal.Controllers
         {
             Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
 
-            return View(p);
+            return PartialView("_PuppyEditPartial", p);
         }
 
         // POST: PuppyController/Edit/5
@@ -116,7 +116,7 @@ namespace PuppyStoreFinal.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(p);
+            return PartialView("_PuppyEditPartial", p);
         }
 
         // GET: PuppyController/Delete/5
@@ -124,7 +124,7 @@ namespace PuppyStoreFinal.Controllers
         {
             Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
 
-            return View(p);
+            return PartialView("_PuppyDeletePartial", p);
         }
 
         // POST: PuppyController/Delete/5
