@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuppyStoreFinal", "PuppyStoreFinal.csproj", "{E0DEBD47-E7A4-45B9-841F-A8BB6924DF66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogBreedApi", "..\DogBreedApi\DogBreedApi.csproj", "{7E05170E-9800-4B56-9A46-13D64209F834}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogBreedApi", "..\DogBreedApi\DogBreedApi.csproj", "{7E05170E-9800-4B56-9A46-13D64209F834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

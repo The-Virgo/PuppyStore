@@ -44,7 +44,8 @@ namespace PuppyStoreFinal.Controllers
         // GET: PuppyController/Create
         public ActionResult Create()
         {
-            return View();
+            Event e = new Event();
+            return PartialView("_EventCreatePartial", e);
         }
 
         // POST: PuppyController/Create
@@ -60,7 +61,7 @@ namespace PuppyStoreFinal.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return PartialView("_EventCreatePartial", e);
         }
 
         // GET: PuppyController/Edit/5
@@ -68,7 +69,7 @@ namespace PuppyStoreFinal.Controllers
         {
             Event e = await ApplicationDb.GetEventAsync(_context, id);
 
-            return View(e);
+            return PartialView("_EventEditPartial", e);
         }
 
         // POST: PuppyController/Edit/5
@@ -95,7 +96,7 @@ namespace PuppyStoreFinal.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(e);
+            return PartialView("_EventEditPartial", e);
         }
 
         // GET: PuppyController/Delete/5
@@ -103,7 +104,7 @@ namespace PuppyStoreFinal.Controllers
         {
             Event e = await ApplicationDb.GetEventAsync(_context, id);
 
-            return View(e);
+            return PartialView("_EventDeletePartial", e);
         }
 
         // POST: PuppyController/Delete/5
