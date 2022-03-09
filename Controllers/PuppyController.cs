@@ -37,6 +37,13 @@ namespace PuppyStoreFinal.Controllers
             return View(puppies);
         }
 
+        public async Task<IActionResult> AdminPuppy()
+        {
+            List<Puppy> puppies = await ApplicationDb.GetPuppiesAsync(_context);
+
+            return View(puppies);
+        }
+
         // GET: PuppyController/Details/5
         public async Task<ActionResult> Details(int id)
         {

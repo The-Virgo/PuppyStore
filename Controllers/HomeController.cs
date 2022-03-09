@@ -24,11 +24,9 @@ namespace PuppyStoreFinal.Controllers
 
         public async Task<IActionResult> Index()
         {
-            dynamic mymodel = new ExpandoObject();
-            mymodel.Puppies = await ApplicationDb.GetPuppiesAsync(_context);
-            mymodel.Events = await ApplicationDb.GetEventsAsync(_context);
+            List<Event> events = await ApplicationDb.GetEventsAsync(_context);
 
-            return View(mymodel);
+            return View(events);
         }
 
         public IActionResult Privacy()
