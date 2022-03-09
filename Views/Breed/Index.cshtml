@@ -2,14 +2,15 @@
 
 <head>
     <link rel="stylesheet" href="~/css/cards.css" />
-    <link rel="stylesheet" href="~/css/theme.css" />
 </head>
 <body>
+    <input id="breedSearch" onkeyup="breedSearch()" class="form-control" type="search" placeholder="Search..." style="width: auto;">
+
     <div class="card-section">
-        <div class="card-container">
+        <div id="cards" class="card-container">
             @foreach (DogBreedApi.Root r in Model)
             {
-                <div class="my-card">
+                <div class="my-card default @r.Name">
                     <div class="image-container">
                         <a asp-controller="Breed" asp-action="Details" asp-route-id="@r.Id">
                             <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
@@ -24,5 +25,8 @@
             }
         </div>
     </div>
+
+    <script type="text/javascript" src="/js/userSearch.js"></script>
+
 </body>
 
