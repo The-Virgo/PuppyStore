@@ -26,3 +26,16 @@
         });
     })
 })
+
+$(document).ready(function () {
+    $(window).scroll(function(){
+        if($(document).scrollTop() > 50){
+            $("nav").addClass("shrink")
+            $("nav").removeClass("bg-light")
+        }
+        else{
+            $("nav").removeClass("shrink")
+            $("nav").addClass("bg-light")
+        }
+    });
+});
