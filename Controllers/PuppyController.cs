@@ -13,9 +13,6 @@ using System.Threading.Tasks;
 
 namespace PuppyStoreFinal.Controllers
 {
-    [Authorize(Roles = "Admin")]
-
-
     public class PuppyController : Controller
     {
 
@@ -37,6 +34,7 @@ namespace PuppyStoreFinal.Controllers
             return View(puppies);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminPuppy()
         {
             List<Puppy> puppies = await ApplicationDb.GetPuppiesAsync(_context);
@@ -51,6 +49,7 @@ namespace PuppyStoreFinal.Controllers
             return View(p);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: PuppyController/Create
         public ActionResult Create()
         {
@@ -58,6 +57,7 @@ namespace PuppyStoreFinal.Controllers
             return PartialView("_PuppyCreatePartial", p);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: PuppyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,6 +83,8 @@ namespace PuppyStoreFinal.Controllers
             return PartialView("_PuppyCreatePartial", p);
         }
 
+
+        [Authorize(Roles = "Admin")]
         // GET: PuppyController/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -91,6 +93,8 @@ namespace PuppyStoreFinal.Controllers
             return PartialView("_PuppyEditPartial", p);
         }
 
+
+        [Authorize(Roles = "Admin")]
         // POST: PuppyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -126,6 +130,7 @@ namespace PuppyStoreFinal.Controllers
             return PartialView("_PuppyEditPartial", p);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: PuppyController/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -138,6 +143,7 @@ namespace PuppyStoreFinal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Puppy p = await ApplicationDb.GetPuppyAsync(_context, id);
@@ -155,6 +161,7 @@ namespace PuppyStoreFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task UploadPic(IFormFile file, string newName)
         {
             string extension = Path.GetExtension(file.FileName);
