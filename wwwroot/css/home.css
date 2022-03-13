@@ -1,0 +1,147 @@
+﻿.carousel{
+    padding-bottom: 10%;
+}
+
+.carousel-indicators {
+    padding-bottom: 10%;
+}
+
+.carousel-item {
+    padding-top: 60.25%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 1px;
+    background: black;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50% !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+}
+
+.banner {
+    padding: 10%;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(../site-pictures/home-banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+}
+
+.banner-desc p {
+    font-size: 20px;
+}
+
+.banner-desc {
+    width: 40%;
+    color: white;
+}
+
+
+.home-card-section {
+    grid-template-columns: 1fr repeat(12, minmax(auto, 60px)) 1fr;
+    padding: 60px 0;
+    position: relative;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.home-card-container {
+    grid-column: 2 / span 12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 15px;
+    border-radius: 50px;
+}
+
+.home-card {
+    grid-column-end: span 4;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    background-clip: border-box;
+    justify-content: center;
+}
+
+.home-image-container {
+    width: 100%;
+    padding-top: 60.25%;
+    overflow: hidden;
+    position: relative;
+    background: black;
+}
+
+.home-image-container img {
+    width: 100%;
+    position: absolute;
+    top: 50% !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #008CBA;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+    z-index: 99;
+}
+
+.home-image-container:hover .overlay {
+    height: 100%;
+}
+
+.home-card-text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.home-card-pretext {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    z-index: 1;
+    color: white;
+}
+
+.event-header {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    color: white;
+    padding-top: 10%;
+}
+
+.event-header h2{
+    font-weight: normal;
+}
+
+.event-content {
+    background-color: #45515d;
+}
+
+.sub-heading{
+    width: 70%;
+    margin: auto;
+}

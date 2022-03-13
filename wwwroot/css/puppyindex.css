@@ -1,0 +1,22 @@
+﻿body {
+}
+
+.banner {
+    padding: 10%;
+    position: absolute;
+    width: 100%;
+    height: 75vh;
+    background-color: #d45224;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.puppy-index-content {
+    position: relative;
+    top: 20rem;
+}
+
+
+.card-body{
+    background-color: white;
+}

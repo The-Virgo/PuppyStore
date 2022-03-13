@@ -2,76 +2,85 @@
 
 <head>
     <link rel="stylesheet" href="~/css/cards.css" />
+    <link rel="stylesheet" href="~/css/puppyindex.css" />
 </head>
 <body>
+    <div class="banner">
+    </div>
 
-    <select onchange="cardPuppySearch()" id="breedSelect" class="form-control" style="width: fit-content">
-        <option value="default">Any</option>
-        @{var breedList = Model.GroupBy(x => x.Breed).Select(x => x.First()).ToList(); }
-        @foreach (Puppy p in breedList)
-        {
-            <option value="@p.Breed">@p.Breed</option>
-        }
-    </select>
-    <select onchange="cardPuppySearch()" id="sexSelect" class="form-control" style="width: fit-content;">
-        <option value="default">Any</option>
-        <option value="False">Male</option>
-        <option value="True">Female</option>
-    </select>
-
-    <div class="card-section">
-        <div id="cards" class="card-container">
-            @foreach (Puppy p in Model)
-            {
-                if (p.Sold == false)
+    <div class="puppy-index-content">
+        <section class="controls">
+            <select onchange="cardPuppySearch()" id="breedSelect" class="form-control" style="width: fit-content">
+                <option value="default">Any</option>
+                @{var breedList = Model.GroupBy(x => x.Breed).Select(x => x.First()).ToList(); }
+                @foreach (Puppy p in breedList)
                 {
-                    <div class="my-card default @p.Breed @p.Sex.ToString()">
-                        <div class="image-container">
-                            <a asp-controller="Puppy" asp-action="Details" asp-route-id="@p.PuppyId">
-                                <img class="card-img-top" src=@("/puppy-pictures/" + p.PuppyId.ToString() + ".jpg") alt="Card image cap" />
-                            </a>
-
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">"@p.Nickname"</h5>
-                            <h6 class="card-text">@p.Breed</h6>
-                            @if (p.Sex == true)
-                            {
-                                <p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fc03ad" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z" />
-                                    </svg>
-                                    ●
-                                    @p.Age weeks
-                                    ●
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.244-.487ZM4.352 3.356a4.004 4.004 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5c0 .276-.226.496-.498.542-.95.162-1.749.78-2.173 1.617a.595.595 0 0 1-.52.341c-.346 0-.599-.329-.457-.644Z" />
-                                    </svg>
-                                    @p.Birthday.Month / @p.Birthday.Day
-                                </p>
-                            }
-                            else
-                            {
-                                <p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0335fc" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
-                                    </svg>
-                                    ●
-                                    @p.Age weeks
-                                    ●
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.244-.487ZM4.352 3.356a4.004 4.004 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5c0 .276-.226.496-.498.542-.95.162-1.749.78-2.173 1.617a.595.595 0 0 1-.52.341c-.346 0-.599-.329-.457-.644Z" />
-                                    </svg>
-                                    @p.Birthday.Month / @p.Birthday.Day
-                                </p>
-                            }
-
-                        </div>
-                    </div>
+                    <option value="@p.Breed">@p.Breed</option>
                 }
-            }
+            </select>
+            <select onchange="cardPuppySearch()" id="sexSelect" class="form-control" style="width: fit-content;">
+                <option value="default">Any</option>
+                <option value="False">Male</option>
+                <option value="True">Female</option>
+            </select>
+        </section>
+
+
+        <div class="card-section">
+            <div id="cards" class="card-container">
+                @foreach (Puppy p in Model)
+                {
+                    if (p.Sold == false)
+                    {
+                        <div class="my-card default @p.Breed @p.Sex.ToString()">
+                            <div class="image-container">
+                                <a asp-controller="Puppy" asp-action="Details" asp-route-id="@p.PuppyId">
+                                    <img class="card-img-top" src=@("/puppy-pictures/" + p.PuppyId.ToString() + ".jpg") alt="Card image cap" />
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">"@p.Nickname"</h5>
+                                <h6 class="card-text">@p.Breed</h6>
+                                @if (p.Sex == true)
+                                {
+                                    <p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fc03ad" class="bi bi-gender-female" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z" />
+                                        </svg>
+                                        ●
+                                        @p.Age weeks
+                                        ●
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.244-.487ZM4.352 3.356a4.004 4.004 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5c0 .276-.226.496-.498.542-.95.162-1.749.78-2.173 1.617a.595.595 0 0 1-.52.341c-.346 0-.599-.329-.457-.644Z" />
+                                        </svg>
+                                        @p.Birthday.Month / @p.Birthday.Day
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0335fc" class="bi bi-gender-male" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+                                        </svg>
+                                        ●
+                                        @p.Age weeks
+                                        ●
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.244-.487ZM4.352 3.356a4.004 4.004 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5c0 .276-.226.496-.498.542-.95.162-1.749.78-2.173 1.617a.595.595 0 0 1-.52.341c-.346 0-.599-.329-.457-.644Z" />
+                                        </svg>
+                                        @p.Birthday.Month / @p.Birthday.Day
+                                    </p>
+                                }
+
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
         </div>
     </div>
+    
 
     <script type="text/javascript" src="/js/userSearch.js"></script>
 
