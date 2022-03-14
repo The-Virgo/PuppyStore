@@ -1,33 +1,77 @@
 ﻿@model IEnumerable<DogBreedApi.Root>
 
+<head>
+    <link rel="stylesheet" href="~/css/list.css" />
+</head>
+
+<div class="banner">
+</div>
+
+
 @foreach (DogBreedApi.Root r in Model)
 {
     if (r.Id.ToString() == (string)ViewData["BreedId"])
     {
-        <h1>@r.Name</h1>
-
-        <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
-
-        <h2>Breed Group</h2>
-        <p>@r.BreedGroup</p>
-
-        <h2>Origin</h2>
-        <p>@r.Origin</p>
-
-        <h2>Bred For</h2>
-        <p>@r.BredFor</p>
-
-        <h2>Temperament</h2>
-        <p>@r.Temperament</p>
-
-        <h2>Life Span</h2>
-        <p>@r.LifeSpan</p>
-
-        <h2>Weight</h2>
-        <p>@r.Weight.Imperial Pounds</p>
-
-        <h2>Height</h2>
-        <p>@r.Height.Imperial</p>
+        <div class="details-card-container">
+            <div class="details-card">
+                <h1>@r.Name</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="img-container">
+                            <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <dl class="row">
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.BreedGroup)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.BreedGroup
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Origin)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.Origin
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.BredFor)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.BredFor
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Temperament)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.Temperament
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.LifeSpan)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.LifeSpan
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Weight.Imperial)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.Weight.Imperial lbs
+                                </dd>
+                                <dt class="col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Height.Imperial)
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @r.Height.Imperial Inches
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 }
 

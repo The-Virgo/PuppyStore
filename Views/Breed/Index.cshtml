@@ -2,29 +2,46 @@
 
 <head>
     <link rel="stylesheet" href="~/css/cards.css" />
+    <link rel="stylesheet" href="~/css/puppyindex.css" />
 </head>
 <body>
-    <input id="breedSearch" onkeyup="breedSearch()" class="form-control" type="search" placeholder="Search..." style="width: auto;">
+    <div class="banner">
+    </div>
 
-    <div class="card-section">
-        <div id="cards" class="card-container">
-            @foreach (DogBreedApi.Root r in Model)
-            {
-                <div class="my-card default @r.Name">
-                    <div class="image-container">
-                        <a asp-controller="Breed" asp-action="Details" asp-route-id="@r.Id">
-                            <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
-                        </a>
+    <div class="puppy-index-content">
+        <div class="list-header">
+            <h1>
+                BREEDS
+            </h1>
+        </div>
+
+        <section class="controls">
+            <input id="breedSearch" onkeyup="breedSearch()" class="form-control" type="search" placeholder="Search..." style="width: auto;">
+        </section>
+
+
+        <div class="card-section">
+            <div id="cards" class="card-container">
+                @foreach (DogBreedApi.Root r in Model)
+                {
+                    <div class="my-card default @r.Name">
+                        <div class="image-container">
+                            <a asp-controller="Breed" asp-action="Details" asp-route-id="@r.Id">
+                                <img class="card-img-top" src="@r.Image.Url" alt="Card image cap" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                @r.Name
+                            </h5>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            @r.Name
-                        </h5>
-                    </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
+
+    
 
     <script type="text/javascript" src="/js/userSearch.js"></script>
 

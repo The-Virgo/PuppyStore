@@ -5,18 +5,23 @@
     padding: 10%;
     position: absolute;
     width: 100%;
+    background-color: #45515d;
     height: 75vh;
-    background-color: #d45224;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .puppy-index-content {
     position: relative;
-    top: 20rem;
+    top: 10rem;
 }
 
 
 .card-body{
     background-color: white;
+}
+
+.list-header{
+    color: white;
+    text-align: center;
 }

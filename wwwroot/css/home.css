@@ -1,4 +1,12 @@
-﻿.carousel{
+﻿a{
+    color: white!important;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.carousel{
     padding-bottom: 10%;
 }
 
