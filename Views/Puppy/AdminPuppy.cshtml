@@ -4,26 +4,33 @@
     ViewData["Title"] = "Index";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/theme.css" />
+</head>
+
 <body>
+    <section class="controls">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#puppyCreate"
+                data-url="@Url.Action("Create")">
+            Add Puppy
+        </button>
+        <select onchange="puppySearch()" id="breedSelect" class="form-control" style="width: fit-content">
+            <option value="default">Any</option>
+            @{var breedList = Model.GroupBy(x => x.Breed).Select(x => x.First()).ToList(); }
+            @foreach (Puppy p in breedList)
+            {
+                <option value="@p.Breed">@p.Breed</option>
+            }
+        </select>
+        <select onchange="puppySearch()" id="sexSelect" class="form-control" style="width: fit-content;">
+            <option value="default">Any</option>
+            <option value="False">Male</option>
+            <option value="True">Female</option>
+        </select>
+    </section>
     <div id="PlaceHolder"></div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#puppyCreate"
-            data-url="@Url.Action("Create")">
-        Add Puppy
-    </button>
-    <select onchange="puppySearch()" id="breedSelect" class="form-control" style="width: fit-content">
-        <option value="default">Any</option>
-        @{var breedList = Model.GroupBy(x => x.Breed).Select(x => x.First()).ToList(); }
-        @foreach (Puppy p in breedList)
-        {
-            <option value="@p.Breed">@p.Breed</option>
-        }
-    </select>
-    <select onchange="puppySearch()" id="sexSelect" class="form-control" style="width: fit-content;">
-        <option value="default">Any</option>
-        <option value="False">Male</option>
-        <option value="True">Female</option>
-    </select>
+    
     <table id="puppyTable" class="table">
         <thead>
             <tr>

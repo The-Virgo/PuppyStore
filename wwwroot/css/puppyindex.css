@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.banner {
+    padding: 10%;
+    position: absolute;
+    width: 100%;
+    background-color: #45515d;
+    height: 75vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.puppy-index-content {
+    position: relative;
+    top: 10rem;
+}
+
+
+.card-body{
+    background-color: white;
+}
+
+.list-header{
+    color: white;
+    text-align: center;
+}
