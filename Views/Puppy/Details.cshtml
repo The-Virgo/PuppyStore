@@ -39,13 +39,20 @@
                             @Html.DisplayNameFor(model => model.Age)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Age)
+                            @Html.DisplayFor(model => model.Age) Weeks
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Sex)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Sex)
+                            @if (Model.Sex == true)
+                            {
+                                <p>Female</p>
+                            }
+                            else 
+                            {
+                                <p>Male</p>
+                            }
                         </dd>
                     </dl>
                 </div>
